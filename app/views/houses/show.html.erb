@@ -1,6 +1,6 @@
 <h3><%= @house.name %> Haus</h3>
 
-
+<p><%= flash[:welcome] %></p>
 <h5>Add Items</h5>
 <%= form_for [@house, @item] do |f| %>
   <%= f.text_field :name, placeholder: "Item" %>

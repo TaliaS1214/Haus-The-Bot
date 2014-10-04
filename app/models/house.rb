@@ -9,7 +9,7 @@ class House < ActiveRecord::Base
   end
 
   def generate_pin
-    pin = SecureRandom.base64(23)
+    pin = SecureRandom.hex(10)
     House.where("pin = ?", pin).exists? ? generate_pin : pin
   end
 

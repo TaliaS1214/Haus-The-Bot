@@ -16,3 +16,23 @@
 //= require jquery.validate.additional-methods
 //= require turbolinks
 //= require_tree .
+
+$(document).ready(readyFunc);
+$(document).on('page:load', readyFunc);
+
+function readyFunc(){
+  $('body').on('click', 'li.house-pin-toggle-show a', function(e){
+    e.preventDefault();
+    $(this).parent().removeClass('house-pin-toggle-show');
+    $(this).parent().addClass('house-pin-toggle-hide');
+    $(this).text('Hide Pin');
+    $('.house-pin').addClass('house-pin-show');
+  });
+  $('body').on('click', 'li.house-pin-toggle-hide a', function(e){
+    e.preventDefault();
+    $(this).parent().removeClass('house-pin-toggle-hide');
+    $(this).parent().addClass('house-pin-toggle-show');
+    $(this).text('Show Pin');
+    $('.house-pin').removeClass('house-pin-show');
+  });
+}

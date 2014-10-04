@@ -22,6 +22,72 @@ body {
   list-style: none;
 }
 
-.haus-nav-list li{
+.haus-nav-list li {
+  display: inline-block;
+  font-size: 24px;
+  padding: 10px 10px;
+}
+
+.haus-nav-list li a {
+  color: white;
+  text-decoration: none;
+}
+
+.haus-nav-list li a:hover {
+  color: rgb(46, 67, 77);
+}
+
+img.logo {
+  float: left;
+  width: 30px;
+}
+
+
+#user_signup_form {
+  border: 5px solid white;
+  border-radius: 10px;
+  margin: 10% auto 0 auto;
+  padding: 40px;
+  min-width: 300px;
+  width: 60%;
+}
+
+#user_signup_form input[type=text] {
+  border-radius: 5px;
+  font-size: 14px;
+  height: 20px;
+  margin: 5px;
+  padding: 5px;
+  min-width: 350px;
+  width: 80%;
+}
+
+#user_signup_form input[type=password] {
+  border-radius: 5px;
+  font-size: 14px;
+  height: 20px;
+  margin: 5px;
+  padding: 5px;
+  min-width: 300px;
+  width: 80%;
+}
+
+#user_signup_form .first-house {
+  margin-left: 5px;
+}
+
+#user_signup_form .haus-submit {
+  padding: 50px;
+  width: 100px;
+  height: 100px;
+}
+
+.haus-nav-list li.house-pin {
+  display: none;
+  font-size: 12px;
+  color: white;
+}
+
+.haus-nav-list li.house-pin.house-pin-show {
   display: inline-block;
 }

@@ -14,19 +14,20 @@
 
 
   <%= form_for @user do |f| %>
-    <%= f.text_field :handle, placeholder: 'Inbox Handle' %>
+    <%= f.text_field :handle, placeholder: 'Inbox Handle (eg: hausthebott)', class: 'form-control' %>
     <br>
     <%= f.password_field :password, placeholder: 'Password' %>
     <br>
-    Are you the first house user to sign up?
+    <br>
+    <span class="first-house">Are you the first house user to sign up?</span>
     <input type="checkbox" name="user[is_first]" id="first_user" checked>
     <br>
     <input type="text" name="user[house_name]" id="house_name" placeholder="House name">
-    <br>
     <input type="text" name="user[house_pin]" id="house_pin" placeholder="House pin" style="display:none;">
     <br>
-    <%= f.submit %>
+    <%= f.submit 'Submit', class: 'haus-submit' %>
   <% end %>
+  <p><%= flash[:house_error] %></p>
 </div>
 
 
