@@ -11,8 +11,9 @@ class ItemsController < ApplicationController
   def create
     house = House.find_by(id: params[:house_id])
     item = Item.new(item_params)
-    house.items << item
+    item.bought = false
     if item.save
+      house.items << item
       flash[:notice] = "error saving"
     end
     redirect_to house

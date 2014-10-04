@@ -9,7 +9,7 @@ module InboxTheApp
       },
       body: {
         to: username, text: body
-        }
+      }
     )
   end
 
