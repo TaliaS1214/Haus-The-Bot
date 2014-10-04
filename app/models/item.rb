@@ -1,4 +1,5 @@
 class Item < ActiveRecord::Base
-  validates :name, :type, :is_perishable?, :bought?, presence: true
+  validates_presence_of :name, :kind
   belongs_to :house
+  belongs_to :user
 end
