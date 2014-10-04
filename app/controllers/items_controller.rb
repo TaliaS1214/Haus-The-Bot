@@ -24,10 +24,11 @@ class ItemsController < ApplicationController
   end
 
   def hausthebott
-    sender_username = params['sender']['username']
-    # stuff here to process return text
-    send_text = 'Sean bought milk 4 days ago. It is likely not expired'
-    InboxTheApp.send_message(sender_username, send_text)
+    sender_handle = params['sender']['username']
+    incoming_text = params['data']['text']
+    house = User.find_by(handle: sender_handle).house
+    outgoing_mesage = QueryParser.get_response(incoming_message, house)
+    InboxTheApp.send_message(sender_handle, outgoing_message)
   end
 
   private
