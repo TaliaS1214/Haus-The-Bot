@@ -10,6 +10,6 @@
 <% if @house.items.exists? %>
   Items
   <% @house.items.each do |i| %>
-    <%= i.name %>
+    <li><%= i.name %></li>
   <% end %>
 <% end %>
