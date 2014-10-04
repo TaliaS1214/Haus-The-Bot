@@ -1,0 +1,23 @@
+<div>
+  <%= form_tag '/sessions', id:'login' do %>
+    <%= label_tag "Handle" %>
+    <%= text_field_tag :handle %>
+    <br>
+    <%= label_tag "Password" %>
+    <%= password_field_tag :password %>
+    <br>
+    <%= submit_tag "Login" %>
+  <% end %>
+</div>
+
+
+<script>
+$('document').ready( function(){
+  $("#login").validate({
+    rules: {
+      "handle": "required",
+      "password": "required"
+    }
+  });
+})
+</script>

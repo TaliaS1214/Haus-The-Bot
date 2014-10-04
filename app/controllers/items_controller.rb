@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
   include InboxTheApp
 
+
   def index
     house = House.find_by(id: params[:house_id])
     items = house.items
@@ -9,11 +10,12 @@ class ItemsController < ApplicationController
 
   def create
     house = House.find_by(id: params[:house_id])
-    @item = Item.new(item_params)
-    house.items << @item
-    if @item.save
-      render json: @item.to_json, status: 200
+    item = Item.new(item_params)
+    house.items << item
+    if item.save
+      flash[:notice] = "error saving"
     end
+    redirect_to house
   end
 
   def update
