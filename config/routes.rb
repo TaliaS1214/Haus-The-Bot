@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  root to: 'application#index'
+  root to: 'users#new'
 
   # User Routes
   post '/users'                             => 'users#create'

@@ -1,9 +1,6 @@
 class User < ActiveRecord::Base
-
-  belongs_to :house
-
-  validates :handle, uniqueness: true
-
   has_secure_password
-  
+  belongs_to :house
+  validates :handle, :password, presence: true
+  validates :handle, uniqueness: true, :case_sensitive => false
 end
