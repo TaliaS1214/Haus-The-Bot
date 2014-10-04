@@ -48,4 +48,8 @@ module QueryParser
 
   end
 
+  def self.help_text
+    "Welcome to Hausthebott!\nTo add an item type 'add <item name>' If that item is perishable type 'add <item name> -p'\nTo check status of an item type '<item name>?'\nTo get a list of all unbought items type 'list'\nTo see this help menu at any time type 'help'"
+  end
+
 end
