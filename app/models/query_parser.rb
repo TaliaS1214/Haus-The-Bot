@@ -117,7 +117,7 @@ module QueryParser
     "--> check item status\n\n" +
     "'<item name>?'\n" +
     "--> check item status\n\n" +
-    "'bought <item name(s)?'\n" +
+    "'bought <item name(s)>'\n" +
     "--> mark item as bought\n\n" +
     "'list'\n" +
     "--> see all unbought items\n\n" +
