@@ -11,7 +11,7 @@ module QueryParser
     elsif text_message.include? "do we have"
 
       # Get the item name
-      item_name = text_message.split("have ").gsub("?", "")
+      item_name = text_message.split("have ").last.gsub("?", "")
 
       # If we can find the item, grab the one bought most recently
       if item = Item.where(name: item_name, bought?: true).sort_by(&:purchase_date).last
@@ -34,7 +34,7 @@ module QueryParser
     outgoing_message
   end
 
-  def get_perishable_text(purchase_date)
+  def self.get_perishable_text(purchase_date)
     days_since_purchase  = (Date.today - purchase_date).to_i
 
     case

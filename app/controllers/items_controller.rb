@@ -27,7 +27,7 @@ class ItemsController < ApplicationController
     sender_handle = params['sender']['username']
     incoming_text = params['data']['text']
     house = User.find_by(handle: sender_handle).house
-    outgoing_mesage = QueryParser.get_response(incoming_message, house)
+    outgoing_message = QueryParser.get_response(incoming_text, house)
     InboxTheApp.send_message(sender_handle, outgoing_message)
   end
 
