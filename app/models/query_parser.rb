@@ -44,7 +44,7 @@ module QueryParser
       items_to_buy.each do |item|
         message_to_display += (item.name.split.map(&:capitalize).join(' ') + "\n")
       end
-      message_to_display
+      message_to_display.strip
 
     when 'bought'
       item_names = text_message.split("bought ").last.split
