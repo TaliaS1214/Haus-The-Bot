@@ -1,4 +1,5 @@
 class ItemsController < ApplicationController
+  include InboxTheApp
 
   def index
     house = House.find_by(id: params[:house_id])
@@ -22,10 +23,18 @@ class ItemsController < ApplicationController
     end
   end
 
+  def hausthebott
+    sender_username = params['sender']['username']
+    # stuff here to process return text
+    send_text = 'Sean bought milk 4 days ago. It is likely not expired'
+    InboxTheApp.send_message(sender_username, send_text)
+  end
+
   private
 
   def item_params
     params.require(:item).permit(:name, :type, :is_perishable?, :bought?)
   end
+
 
 end
