@@ -4,8 +4,10 @@ module QueryParser
 
     text_message = raw_text_message.downcase.strip
 
+    if raw_text_message == 'help'
+      outgoing_message = help_text
     # If the user isn't in a house...
-    if house.nil?
+    elsif house.nil?
       outgoing_message = "Go to www.hausthebott.com to join a haus!"
     # If they are, and the person asks using the long form...
     elsif text_message.include? "do we have"
@@ -21,7 +23,7 @@ module QueryParser
 
   def self.try_to_find_item(item_name)
     item = Item.where(name: item_name, bought?: true).sort_by(&:purchase_date).last
-    item ? message_if_perishable(item) "We don't have any! Pick some up."
+    item ? message_if_perishable(item) : "We don't have any! Pick some up."
   end
 
   def self.message_if_perishable(item)
@@ -48,7 +50,16 @@ module QueryParser
   end
 
   def self.help_text
-    "Welcome to Hausthebott!\nTo add an item type 'add <item name>' If that item is perishable type 'add <item name> -p'\nTo check status of an item type '<item name>?'\nTo get a list of all unbought items type 'list'\nTo see this help menu at any time type 'help'"
+    "Welcome to Hausthebott!\n\n" +
+    "'add <item name>'\n" +
+    "--> add an item\n\n" +
+    "'add <item name> -p'\n" +
+    "--> add a perishable item\n\n" +
+    "'<item name>?'\n" +
+    "--> check item status\n\n" +
+    "'list'\n" +
+    "--> see all unbought items\n\n" +
+    "To see this help menu at any time type 'help'"
   end
 
 end
