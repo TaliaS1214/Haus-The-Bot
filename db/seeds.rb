@@ -26,8 +26,8 @@ items.push(Item.create({
     name: "bananas",
     kind: "groceries",
     purchase_date: Date.new(2014, 10, 3),
-    perishable?: true,
-    bought?: true
+    perishable: true,
+    bought: true
   })
 )
 
@@ -35,8 +35,8 @@ items.push(Item.create({
     name: "olive oil",
     kind: "groceries",
     purchase_date:  Date.new(2014, 9, 18),
-    perishable?: false,
-    bought?: true
+    perishable: false,
+    bought: true
   })
 )
 
@@ -44,8 +44,8 @@ items.push(Item.create({
     name: "paper towel",
     kind: "household",
     purchase_date: Date.new(2014, 9, 18),
-    perishable?: false,
-    bought?: false
+    perishable: false,
+    bought: false
   })
 )
 
@@ -53,8 +53,8 @@ items.push(Item.create({
     name: "toothpaste",
     kind: "household",
     purchase_date:  Date.new(2014, 8, 14),
-    perishable?: false,
-    bought?: false
+    perishable: false,
+    bought: false
   })
 )
 
@@ -62,16 +62,16 @@ items.push(Item.create({
     name: "cereal",
     kind: "groceries",
     purchase_date:  Date.new(2014, 1, 9),
-    perishable?: true,
-    bought?: true
+    perishable: true,
+    bought: true
   })
 )
 
 items.push(Item.create({
     name: "milk",
     kind: "groceries",
-    perishable?: true,
-    bought?: false
+    perishable: true,
+    bought: false
   })
 )
 
