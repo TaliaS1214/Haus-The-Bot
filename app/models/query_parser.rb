@@ -3,40 +3,40 @@ module QueryParser
   def self.get_response(raw_text_message, house)
 
     text_message = raw_text_message.downcase.strip
+
     # If the user isn't in a house...
     if house.nil?
       outgoing_message = "Go to www.hausthebott.com to join a haus!"
-
     # If they are, and the person asks using the long form...
     elsif text_message.include? "do we have"
-
-      # Get the item name
       item_name = text_message.split("have ").last.gsub("?", "")
-
-      # If we can find the item, grab the one bought most recently
-      if item = Item.where(name: item_name, bought?: true).sort_by(&:purchase_date).last
-
-        # Does it spoil?
-        if item.perishable?
-          outgoing_message = get_perishable_text(item.purchase_date)
-        else
-          outgoing_message = "We have some but it won't spoil so don't worry about it."
-        end
-
-      else
-        outgoing_message = "Nope! Pick some up."
-      end
-    # Otherwise, if they ask just using e.g. "milk?"
+      outgoing_message = try_to_find_item(item_name)
     else
-
+      item_name = text_message[0..-2]
+      outgoing_message = try_to_find_item(item_name)
     end
 
     outgoing_message
   end
 
-  def self.get_perishable_text(purchase_date)
+  def self.try_to_find_item(item_name)
+    item = Item.where(name: item_name, bought?: true).sort_by(&:purchase_date).last
+    item ? message_if_perishable(item) "We don't have any! Pick some up."
+  end
+
+  def self.message_if_perishable(item)
     days_since_purchase  = (Date.today - purchase_date).to_i
 
+    if item.perishable?
+      get_perishable_text(item.purchase_date)
+    else
+      "#{item.user} bought some some #{days_since_purchase} days ago " +
+      "but it won't spoil so don't worry about it."
+    end
+  end
+
+  def self.get_perishable_text(purchase_date)
+    days_since_purchase  = (Date.today - purchase_date).to_i
     case
     when days_since_purchase >= 10
       "It's been like, more than 10 days sooooooo you should definitely buy some."
@@ -45,7 +45,6 @@ module QueryParser
     else
       "You're good, we've got some already."
     end
-
   end
 
   def self.help_text

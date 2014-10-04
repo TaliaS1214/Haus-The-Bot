@@ -1,0 +1,15 @@
+<h3><%= @house.name %> Haus</h3>
+
+
+<h5>Add Items</h5>
+<%= form_for [@house, @item] do |f| %>
+  <%= f.text_field :name, placeholder: "Item" %>
+<% end %>
+
+<hr>
+<% if @house.items.exists? %>
+  Items
+  <% @house.items.each do |i| %>
+    <%= i.name %>
+  <% end %>
+<% end %>
