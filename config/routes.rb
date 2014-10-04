@@ -14,7 +14,7 @@ Rails.application.routes.draw do
 
   # Item Routes
   get   '/houses/:house_id/items'           => 'items#index'
-  post  '/houses/:house_id/items'           => 'items#create'
+  post  '/houses/:house_id/items/'          => 'items#create'
   put   '/houses/:house_id/items/:item_id'  => 'items#update'
 
   post '/api/hausthebott'                   => 'items#hausthebott'
