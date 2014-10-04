@@ -17,4 +17,6 @@ Rails.application.routes.draw do
   post  '/houses/:house_id/items'           => 'items#create'
   put   '/houses/:house_id/items/:item_id'  => 'items#update'
 
+  post '/api/hausthebott'                   => 'items#hausthebott'
+
 end
