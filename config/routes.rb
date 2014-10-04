@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
 
+  root to: 'application#index'
+
   # User Routes
   post '/users'                             => 'users#create'
+
+  # Sessions Routes
+  resources :sessions, only: [:create, :destroy]
 
   # House Routes
   post  '/houses'                           => 'houses#create'
