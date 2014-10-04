@@ -1,5 +1,8 @@
 class HousesController < ApplicationController
 
+  def verify_house
+  end
+
   def create
     @house = House.new(house_params)
     if @house.save

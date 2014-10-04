@@ -1,0 +1,60 @@
+<div class="page-header">
+  <h1>Sign Up</h1>
+</div>
+
+<div id="flash-msg"></div>
+<div id="user_signup_form">
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <%= form_for @user do |f| %>
+    <%= f.text_field :handle, placeholder: 'Inbox Handle' %>
+    <br>
+    <%= f.password_field :password, placeholder: 'Password' %>
+    <br>
+    Are you the first house user to sign up?
+    <input type="checkbox" name="user[is_first]" id="first_user" checked>
+    <br>
+    <input type="text" name="user[house_name]" id="house_name" placeholder="House name">
+    <br>
+    <input type="text" name="user[house_pin]" id="house_pin" placeholder="House pin" style="display:none;">
+    <br>
+    <%= f.submit %>
+  <% end %>
+</div>
+
+
+
+<script>
+  $('#first_user').on('change', function(){
+    var first = $(this).is(':checked')
+    var house_name = $('#house_name')
+    var house_pin = $('#house_pin')
+    if (first){
+      house_name.show();
+      house_pin.hide();
+       }
+    else {
+      house_name.hide();
+      house_pin.show();
+    }
+  });
+
+  $("form").validate({
+    rules: {
+      handle: "required",
+      password: "required"
+    }
+  });
+</script>
+

@@ -30,6 +30,10 @@ gem 'spring',        group: :development
 gem 'bcrypt', '~> 3.1.7'
 gem 'pry-rails'
 
+gem 'dotenv-rails', :groups => [:development, :test]
+gem 'jquery-validation-rails'
+
+gem "twitter-bootstrap-rails"
 # Use unicorn as the app server
 # gem 'unicorn'
 
