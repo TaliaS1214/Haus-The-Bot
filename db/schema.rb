@@ -36,6 +36,9 @@ ActiveRecord::Schema.define(version: 20141004160301) do
     t.text     "password_digest"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "house_id"
   end
+
+  add_index "users", ["house_id"], name: "index_users_on_house_id", using: :btree
 
 end

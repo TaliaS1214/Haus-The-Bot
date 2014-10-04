@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
 
   root to: 'users#new'
-
+  get '/signup' => 'user#new'
+  get '/login' => 'users#login'
   # User Routes
   post '/users'                             => 'users#create'
 

@@ -1,7 +1,8 @@
 class House < ActiveRecord::Base
   has_many :users
   has_many :items
-  after_create :add_pin
+  before_create :add_pin
+  validates :name, presence: true
 
   def add_pin
     update(pin: generate_pin)
