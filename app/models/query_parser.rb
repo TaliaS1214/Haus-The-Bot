@@ -1,14 +1,14 @@
 module QueryParser
 
-  def self.get_response(raw_text_message, house)
+  def self.get_response(raw_text_message, house, user)
 
     text_message = raw_text_message.downcase.strip
 
-    house.nil? ? "Go to www.hausthebott.com to join a haus!" : outgoing_message(text_message, house)
+    house.nil? ? "Go to www.hausthebott.com to join a haus!" : outgoing_message(text_message, house, user)
 
   end
 
-  def self.outgoing_message(text_message, house)
+  def self.outgoing_message(text_message, house, user)
     first_word = text_message.split.first
     case first_word
     when 'help'
@@ -28,6 +28,7 @@ module QueryParser
             bought: false
           })
           house.items << new_item
+          user.items << new_item
         end
         stringified_list = item_names[0..-2].join(', ') + " and " + item_names.last
       else
@@ -45,6 +46,7 @@ module QueryParser
           })
         end
         house.items << new_item
+        user.items << new_item
         stringified_list = item_names[0].gsub(' -p', '')
       end
 

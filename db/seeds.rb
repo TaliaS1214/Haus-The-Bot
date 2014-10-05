@@ -75,9 +75,81 @@ items.push(Item.create({
   })
 )
 
+items.push(Item.create({
+    name: "butter",
+    kind: "groceries",
+    purchase_date: Date.new(2014, 9, 8),
+    perishable: true,
+    bought: true
+  })
+)
+
+items.push(Item.create({
+    name: "salad",
+    kind: "groceries",
+    purchase_date: Date.new(2014, 9, 29),
+    perishable: true,
+    bought: true
+  })
+)
+
+items.push(Item.create({
+    name: "bread",
+    kind: "groceries",
+    purchase_date: Date.new(2014, 9, 22),
+    perishable: true,
+    bought: true
+  })
+)
+
+items.push(Item.create({
+    name: "trash bags",
+    kind: "household",
+    purchase_date: Date.new(2014, 7, 2),
+    perishable: false,
+    bought: true
+  })
+)
+
+items.push(Item.create({
+    name: "lottery tickets",
+    kind: "household",
+    purchase_date: Date.new(2014, 8, 8),
+    perishable: false,
+    bought: true
+  })
+)
+
+items.push(Item.create({
+    name: "candles",
+    kind: "household",
+    purchase_date: Date.new(2014, 5, 20),
+    perishable: false,
+    bought: false
+  })
+)
+
+items.push(Item.create({
+    name: "InboxTheApp Stickers",
+    kind: "household",
+    purchase_date: Date.new(2014, 10, 4),
+    perishable: false,
+    bought: true
+  })
+)
+
+items.push(Item.create({
+    name: "sour cream",
+    kind: "groceries",
+    purchase_date: Date.new(2002, 3, 14),
+    perishable: true,
+    bought: true
+  })
+)
+
 house.users << sean << jesse
 
 items.each do |item|
   [sean, jesse].sample.items << item
-  house.items << item
+  sean.house.items << item
 end

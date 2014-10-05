@@ -27,13 +27,15 @@ class ItemsController < ApplicationController
   end
 
   def hausthebott
+
     sender_handle = params['sender']['username']
+    user = User.find_by(handle: sender_handle)
                        # new chat created
     incoming_text = params['data']['text']
-    house = User.find_by(handle: sender_handle).house
-    outgoing_message = params[:type] == 12 ?
-                       QueryParser.get_response('help', house) :
-                       QueryParser.get_response(incoming_text, house)
+    house = user.nil? ? nil : user.house
+    outgoing_message = params[:type] == 12 || user.nil? ?
+                       QueryParser.get_response('help', house, user) :
+                       QueryParser.get_response(incoming_text, house, user)
     InboxTheApp.send_message(sender_handle, outgoing_message)
   end
 
