@@ -83,13 +83,20 @@ module QueryParser
       "Crossed #{stringified_list} off the list!"
 
     when text_message
-      item_name = text_message[0..-2]
-      house.items.each do |item|
-        if item.name == item_name
-          try_to_find_item(item_name)
+      if text_message.include? '?'
+        item_name = text_message.gsub('?', '')
+        item_found = false
+        response = "We don't have any! Pick some up."
+        house.items.each do |item|
+          if item.name == item_name && !item_found
+            response = try_to_find_item(item_name)
+            item_found = true
+          end
         end
+        response
+      else
+        "Sorry, I think you made a typo."
       end
-      "Sorry, I think you made a typo."
     else
       "Sorry, I think you made a typo."
     end
@@ -115,7 +122,7 @@ module QueryParser
     days_since_purchase  = (Date.today - purchase_date).to_i
     case
     when days_since_purchase >= 10
-      "It's been like, more than 10 days sooooooo you should definitely buy some."
+      "It's been like #{days_since_purchase} days sooooooo you should definitely buy some."
     when days_since_purchase >= 5
       "It's coming up on a week so you should be fine."
     else
