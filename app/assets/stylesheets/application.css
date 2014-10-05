@@ -16,6 +16,11 @@
 
 body {
   background: rgb(15, 189, 231);
+  font-family: 'Josefin Sans' sans-serif;
+}
+
+.intro-message .haus-header {
+  font-family: 'Righteous' cursive;
 }
 
 .list-unstyled {
@@ -38,38 +43,33 @@ body {
 }
 
 img.logo {
-  float: left;
-  width: 30px;
+  right: 200px;
+  position: absolute;
+  width: 40px;
 }
 
 
 #user_signup_form {
-  border: 5px solid white;
-  border-radius: 10px;
-  margin: 10% auto 0 auto;
-  padding: 40px;
-  min-width: 300px;
-  width: 60%;
 }
 
 #user_signup_form input[type=text] {
-  border-radius: 5px;
-  font-size: 14px;
-  height: 20px;
-  margin: 5px;
-  padding: 5px;
-  min-width: 350px;
-  width: 80%;
+  margin: 0 auto;
+  width: 300px;
 }
 
 #user_signup_form input[type=password] {
-  border-radius: 5px;
-  font-size: 14px;
-  height: 20px;
-  margin: 5px;
-  padding: 5px;
-  min-width: 300px;
-  width: 80%;
+  margin: 0 auto;
+  width: 300px;
+}
+
+#user_signin_form input[type=text] {
+  margin: 0 auto;
+  width: 300px;
+}
+
+#user_signin_form input[type=password] {
+  margin: 0 auto;
+  width: 300px;
 }
 
 #user_signup_form .first-house {
@@ -77,9 +77,11 @@ img.logo {
 }
 
 #user_signup_form .haus-submit {
-  padding: 50px;
-  width: 100px;
-  height: 100px;
+  font-size: 16px;
+}
+
+#user_signin_form .haus-submit {
+  font-size: 16px;
 }
 
 .haus-nav-list li.house-pin {
@@ -90,4 +92,31 @@ img.logo {
 
 .haus-nav-list li.house-pin.house-pin-show {
   display: inline-block;
+}
+
+#user_signin_form {
+  display: none;
+}
+
+.show-sign-up-form {
+  margin-top: 10px;
+}
+
+.main-haus-div {
+
+  width: 80%;
+  margin: 100px auto;
+}
+
+.add-item-div {
+  width: 20%;
+  display: inline-block;
+  margin-right: 30px;
+  vertical-align: top;
+}
+
+.list-div {
+  width: 40%;
+  display: inline-block;
+  margin-left: 30px;
 }

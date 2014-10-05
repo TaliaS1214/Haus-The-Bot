@@ -1,15 +1,25 @@
-<h3><%= @house.name %> Haus</h3>
-
 <p><%= flash[:welcome] %></p>
-<h5>Add Items</h5>
-<%= form_for [@house, @item] do |f| %>
-  <%= f.text_field :name, placeholder: "Item" %>
-<% end %>
 
-<hr>
-<% if @house.items.exists? %>
-  Items
-  <% @house.items.each do |i| %>
-    <li><%= i.name %></li>
-  <% end %>
-<% end %>
+<div class="main-haus-div">
+
+  <h2><%= @house.name %> Haus</h2>
+
+  <div class="add-item-div">
+    <h5>Add Items</h5>
+    <%= form_for [@house, @item] do |f| %>
+      <%= f.text_field :name, placeholder: "Item" %>
+    <% end %>
+  </div>
+
+  <div class="list-div">
+    <% if @house.items.exists? %>
+    <h5>Items</h5>
+    <ul class="list-unstyled">
+      <% @house.items.each do |i| %>
+        <li><%= i.name.split.map(&:capitalize).join(' ') %></li>
+      <% end %>
+    </ul>
+    <% end %>
+  </div>
+</div>
+

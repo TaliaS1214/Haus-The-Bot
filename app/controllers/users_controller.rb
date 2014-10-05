@@ -12,7 +12,6 @@ class UsersController < ApplicationController
       @user.house = h
       @user.save
       session[:current_user] = @user.id
-      binding.pry
       flash[:welcome] = 'Invite housemates using your house pin!'
       redirect_to h
     else

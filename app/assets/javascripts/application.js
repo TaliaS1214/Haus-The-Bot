@@ -35,4 +35,14 @@ function readyFunc(){
     $(this).text('Show Pin');
     $('.house-pin').removeClass('house-pin-show');
   });
+  $('body').on('click', '.show-sign-in-form', function(e){
+    e.preventDefault();
+    $('#user_signup_form').hide();
+    $('#user_signin_form').show();
+  });
+  $('body').on('click', '.show-sign-up-form', function(e){
+    e.preventDefault();
+    $('#user_signup_form').show();
+    $('#user_signin_form').hide();
+  });
 }

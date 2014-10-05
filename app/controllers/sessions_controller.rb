@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
 
   def main
-
+    @user = User.new
   end
 
   def new
@@ -14,7 +14,8 @@ class SessionsController < ApplicationController
       session[:current_user] = @user.id
       redirect_to @user.house
     else
-      render 'new'
+      @user = User.new
+      render 'main'
     end
   end
 
