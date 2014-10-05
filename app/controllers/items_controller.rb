@@ -14,7 +14,6 @@ class ItemsController < ApplicationController
     item.bought = false
     if item.save
       house.items << item
-      flash[:notice] = "error saving"
     end
     redirect_to house
   end

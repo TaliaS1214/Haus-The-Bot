@@ -5,8 +5,59 @@
 
             <div class="row">
                 <div class="intro-message">
-                    <h1>Haus The Bot</h1>
+                    <h1 class="haus-header">Haus The Bot<%= image_tag('logo.gif', class: 'logo') %></h1>
+                    <p>An InboxTheApp Tool</p>
                 </div>
+            </div>
+            <div class="row">
+                <% if current_user %>
+                    <%= link_to("My Haus", current_user.house) %>
+                <% else %>
+                  <div id="flash-msg"></div>
+                    <div id="user_signup_form">
+                      <% if @user.errors.any? %>
+                        <div id="error_explanation">
+                          <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+                          <ul>
+                          <% @user.errors.full_messages.each do |msg| %>
+                            <li><%= msg %></li>
+                          <% end %>
+                          </ul>
+                        </div>
+                      <% end %>
+
+
+                      <%= form_for @user do |f| %>
+                        <%= f.text_field :handle, placeholder: 'Inbox Handle (eg: hausthebott)', class: 'form-control' %>
+                        <br>
+                        <%= f.password_field :password, placeholder: 'Password', class: 'form-control' %>
+                        <br>
+                        <br>
+                        <span class="first-house">Are you the first house user to sign up?</span>
+                        <input type="checkbox" name="user[is_first]" id="first_user" checked>
+                        <br>
+                        <input class="form-control" type="text" name="user[house_name]" id="house_name" placeholder="House name">
+                        <input class="form-control" type="text" name="user[house_pin]" id="house_pin" placeholder="House pin" style="display:none;">
+                        <br>
+                        <%= f.submit 'Submit', class: 'btn btn-default haus-submit' %>
+                      <% end %>
+                      <p><%= flash[:house_error] %></p>
+                      <div class="show-sign-in-form"><a href="#">Have an account already? Sign In</a></div>
+                    </div>
+
+                    <div id="user_signin_form">
+                      <%= form_tag '/sessions', id:'login' do %>
+                        <%= text_field_tag :handle, nil, placeholder: 'Inbox Handle (eg: hausthebott)', class: 'form-control' %>
+                        <br>
+                        <%= password_field_tag :password, nil, placeholder: 'Password', class: 'form-control' %>
+                        <br>
+                        <%= submit_tag "Login", class: 'btn btn-default haus-submit' %>
+                      <% end %>
+                      <div class="show-sign-up-form"><a href="#">Need an account? Sign Up</a></div>
+                    </div>
+
+                <% end %>
             </div>
 
         </div>
@@ -14,3 +65,38 @@
 
     </div>
     <!-- /.intro-header -->
+
+
+<script>
+  $('#first_user').on('change', function(){
+    var first = $(this).is(':checked')
+    var house_name = $('#house_name')
+    var house_pin = $('#house_pin')
+    if (first){
+      house_name.show();
+      house_pin.hide();
+       }
+    else {
+      house_name.hide();
+      house_pin.show();
+    }
+  });
+
+  $("form").validate({
+    rules: {
+      handle: "required",
+      password: "required"
+    }
+  });
+</script>
+
+<script>
+$('document').ready( function(){
+  $("#login").validate({
+    rules: {
+      "handle": "required",
+      "password": "required"
+    }
+  });
+})
+</script>
