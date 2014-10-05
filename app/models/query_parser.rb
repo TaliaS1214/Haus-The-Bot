@@ -19,27 +19,42 @@ module QueryParser
       try_to_find_item(item_name)
 
     when 'add'
-      item_name = text_message.split("add ").last
-      if text_message.include? '-p'
-        item_name = item_name.split.first
-        new_item = Item.create({name: item_name,
-          perishable: true,
-          bought: false
-        })
+      item_names = text_message.split("add ").last
+      item_names = item_names.split(", ")
+      if item_names.length > 1
+        item_names.each do |item_name|
+          new_item = Item.create({name: item_name,
+            perishable: false,
+            bought: false
+          })
+          house.items << new_item
+        end
+        stringified_list = item_names[0..-2].join(', ') + " and " + item_names.last
       else
-        new_item = Item.create({name: item_name,
-          perishable: false,
-          bought: false
-        })
+        if text_message.include? '-p'
+          item_name = item_names[0].gsub(' -p', '')
+          new_item = Item.create({name: item_name,
+            perishable: true,
+            bought: false
+          })
+        else
+          item_name = item_names.first
+          new_item = Item.create({name: item_name,
+            perishable: false,
+            bought: false
+          })
+        end
+        house.items << new_item
+        stringified_list = item_names[0].gsub(' -p', '')
       end
-      house.items << new_item
-      "Added #{item_name} to the list!"
+
+      "Added #{stringified_list} to the list!"
 
     when 'list'
       items_to_buy = house.items.select { |item| !item.bought }
 
       message_to_display = "Items We Need\n" +
-      "=================\n"
+      "=============\n"
 
       items_to_buy.each do |item|
         message_to_display += (item.name.split.map(&:capitalize).join(' ') + "\n")
@@ -47,12 +62,11 @@ module QueryParser
       message_to_display.strip
 
     when 'bought'
-      item_names = text_message.split("bought ").last.split
+      item_names = text_message.split("bought ").last.split(', ')
 
       item_names.each do |item_name|
         unbought_items = Item.where(name: item_name, bought: false)
         unbought_items.each do |item|
-          binding.pry
           item.bought = true
           item.purchase_date = Date.today
           item.save
@@ -60,7 +74,7 @@ module QueryParser
       end
 
       if item_names.length > 1
-        stringified_list = item_names[0..-2].join(', ') + " and " + item_names.split.last
+        stringified_list = item_names[0..-2].join(', ') + " and " + item_names.last
       else
         stringified_list = item_names[0]
       end
