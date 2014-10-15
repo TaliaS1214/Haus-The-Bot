@@ -44,3 +44,5 @@ gem "twitter-bootstrap-rails"
 # gem 'debugger', group: [:development, :test]
 
 gem 'httparty'
+
+gem 'rails_12factor', group: :production
