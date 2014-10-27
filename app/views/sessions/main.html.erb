@@ -5,7 +5,8 @@
 
             <div class="row">
                 <div class="intro-message">
-                    <h1 class="haus-header">Haus The Bott<%= image_tag('logo.gif', class: 'logo') %></h1>
+                    <h1 class="haus-header">Haus The Bott</h1>
+                    <%= image_tag('logo.gif', class: 'logo') %>
                     <p>An InboxTheApp Tool</p>
                 </div>
             </div>
@@ -58,6 +59,11 @@
                     </div>
 
                 <% end %>
+            </div>
+
+            <div class="row">
+              <br>
+              <%= link_to("How do I use this?", about_path) %>
             </div>
 
         </div>

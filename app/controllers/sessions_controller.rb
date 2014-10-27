@@ -4,6 +4,9 @@ class SessionsController < ApplicationController
     @user = User.new
   end
 
+  def about
+  end
+
   def new
 
   end

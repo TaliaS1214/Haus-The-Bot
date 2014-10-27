@@ -19,8 +19,10 @@ body {
   font-family: 'Josefin Sans' sans-serif;
 }
 
-.intro-message .haus-header {
+.haus-header {
+  color: white;
   font-family: 'Righteous' cursive;
+  display: inline-block;
 }
 
 .list-unstyled {
@@ -33,9 +35,9 @@ body {
   padding: 10px 10px;
 }
 
-.haus-nav-list li a {
+a {
   color: white;
-  text-decoration: none;
+  text-decoration: underline;
 }
 
 .haus-nav-list li a:hover {
@@ -43,11 +45,11 @@ body {
 }
 
 img.logo {
-  right: 200px;
-  position: absolute;
+  position: relative;
+  right: -22px;
+  top: -22px;
   width: 40px;
 }
-
 
 #user_signup_form {
 }
@@ -120,3 +122,22 @@ img.logo {
   display: inline-block;
   margin-left: 30px;
 }
+
+.how-to a {
+  color: white;
+}
+
+.how-to ol {
+  margin-top: 50px;
+}
+
+.how-to li {
+  font-size: 1.5em;
+  margin: 10px;
+}
+
+.home-link {
+  font-size: 1.5em;
+}
+
+
